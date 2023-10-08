@@ -14,7 +14,8 @@ export class FunctionUtility {
    *Hàm tiện ích
    */
 
-  constructor() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  constructor() { }
 
   /**
    * Check 1 string có phải empty hoặc null hoặc undefined ko.
@@ -34,7 +35,7 @@ export class FunctionUtility {
       pagination.pageNumber !== 1
     ) {
       // Lấy ra số lượng phần tử hiện tại của trang
-      let currentItemQty =
+      const currentItemQty =
         pagination.totalCount -
         (pagination.pageNumber - 1) * pagination.pageSize;
 
@@ -57,12 +58,15 @@ export class FunctionUtility {
       : document.getElementById(id)?.classList.remove(className);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toFormData(obj: any, form?: FormData, namespace?: string) {
-    let fd = form || new FormData();
+    const fd = form || new FormData();
     let formKey: string;
-    for (var property in obj) {
+    for (const property in obj) {
+      // eslint-disable-next-line no-prototype-builtins
       if (obj.hasOwnProperty(property)) {
         // namespaced key property
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (!isNaN(property as any)) {
           // obj is an array
           formKey = namespace ? `${namespace}[${property}]` : property;
@@ -92,6 +96,7 @@ export class FunctionUtility {
    * Append property HttpParams
    * * @param formValue
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toParams(formValue: any) {
     let params = new HttpParams();
     for (const key of Object.keys(formValue)) {
@@ -103,15 +108,15 @@ export class FunctionUtility {
 
   static exportExcel(result: Blob | string, fileName: string, type?: string) {
     if (typeof result === 'string') {
-      let byteCharacters = atob(result);
-      let byteArrays = [];
+      const byteCharacters = atob(result);
+      const byteArrays = [];
       for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-        let slice = byteCharacters.slice(offset, offset + 512);
-        let byteNumbers = new Array(slice.length);
-        for (var i = 0; i < slice.length; i++) {
+        const slice = byteCharacters.slice(offset, offset + 512);
+        const byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i++) {
           byteNumbers[i] = slice.charCodeAt(i);
         }
-        let byteArray = new Uint8Array(byteNumbers);
+        const byteArray = new Uint8Array(byteNumbers);
         byteArrays.push(byteArray);
       }
       result = new Blob(byteArrays, { type: 'application/xlsx' });

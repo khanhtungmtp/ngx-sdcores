@@ -4,22 +4,9 @@ import {
   SnotifyService,
   SnotifyToastConfig,
 } from 'ngx-sdcores/sd-snotify';
-import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NgSnotifyService {
-  async(arg0: string, arg1: string, errorAction: Observable<unknown>, config: { showProgressBar?: boolean; type?: import("ngx-sdcores/sd-snotify").SnotifyTypeType; closeOnClick?: boolean; pauseOnHover?: boolean; buttons?: import("ngx-sdcores/sd-snotify").SnotifyButton[]; placeholder?: string; titleMaxLength?: number; bodyMaxLength?: number; icon?: string; iconClass?: string; backdrop?: number; animation?: import("ngx-sdcores/sd-snotify").SnotifyAnimate; html?: string | import("@angular/platform-browser").SafeHtml; position?: import("ngx-sdcores/sd-snotify").SnotifyPositionType; }) {
-    throw new Error('Method not implemented.');
-  }
-  remove(id: any) {
-    throw new Error('Method not implemented.');
-  }
-  prompt(body: string, title: string, arg2: { buttons: { text: string; action: (toast: any) => void; }[]; placeholder: string; showProgressBar?: boolean; type?: import("ngx-sdcores/sd-snotify").SnotifyTypeType; pauseOnHover?: boolean; titleMaxLength?: number; bodyMaxLength?: number; icon?: string; iconClass?: string; backdrop?: number; animation?: import("ngx-sdcores/sd-snotify").SnotifyAnimate; html?: string | import("@angular/platform-browser").SafeHtml; position?: import("ngx-sdcores/sd-snotify").SnotifyPositionType; }) {
-    throw new Error('Method not implemented.');
-  }
-  html(html: string, arg1: SnotifyToastConfig) {
-    throw new Error('Method not implemented.');
-  }
   config: SnotifyToastConfig = {
     bodyMaxLength: 300,
     titleMaxLength: 100,
@@ -69,7 +56,9 @@ export class NgSnotifyService {
   confirm(
     body: string,
     title: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     okCallback: () => any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cancelCallBack?: () => any
   ) {
     const config = { ...this.config };
